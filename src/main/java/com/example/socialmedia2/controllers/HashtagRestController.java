@@ -47,10 +47,11 @@ public class HashtagRestController {
                 newHashtag.setId(newHashtag.getId());
                 //newHashtag.setPostNo(post.getId());
                 System.out.println(key +" "+ name);
+                System.out.println(jsonHashtags.get(key));
                 newHashtag.setName(jsonHashtags.get(key));
-                newHashtag.getPosts().add(post);
-                hashtagRepository.save(newHashtag);
+                //newHashtag.getPosts().add(post);
                 postHashtags.add(newHashtag);
+                hashtagRepository.save(newHashtag);
             }
         );
 
