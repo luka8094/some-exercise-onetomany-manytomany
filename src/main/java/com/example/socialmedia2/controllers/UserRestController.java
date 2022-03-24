@@ -27,6 +27,14 @@ public class UserRestController {
         return userRepository.findAll();
     }
 
+
+    //Get one user : works (with Optional)
+    @GetMapping("/{id}")
+    User getAnUser(@PathVariable("id") int id){
+        //TODO: get a user
+        return userRepository.findById(id).get();
+    }
+
     //Create an user : works
     @PostMapping("/{id}")
     void createAnUser(@PathVariable("id") int id, @RequestBody DTOUser user){
@@ -37,14 +45,6 @@ public class UserRestController {
         newUser.setDescription(user.getDescription());
         userRepository.save(newUser);
     }
-
-    //Get one user : works (with Optional)
-    @GetMapping("/{id}")
-    User getAnUser(@PathVariable("id") int id){
-        //TODO: get a user
-        return userRepository.findById(id).get();
-    }
-
 
     //Update an user : works (despite warning in console)
     @PutMapping("/{id}")

@@ -17,13 +17,9 @@ public class Hashtag {
     //Post number (id)
     private String name;
 
-    /*@JsonIgnore
-    @ManyToOne
-    @JoinColumn( name = "post_id")
-    Post post;
-    */
+    @JsonIgnore
     @ManyToMany( mappedBy = "hashtags")
-    private Set<Post> posts = new HashSet<>();
+    private Set<Post> posts;
 
     //public Hashtag(){ }
 

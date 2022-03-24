@@ -33,6 +33,13 @@ public class HashtagRestController {
         return hashtagRepository.findAll();
     }
 
+
+    //Get hashtags by post id
+    @GetMapping("/{id}")
+    List<Hashtag> getUserHastags(@PathVariable("id") int id){
+        return null;
+    }
+
     //Add hashtags to a post
     @PostMapping("/post/{id}/add-hashtags")
     void addHashtag(@PathVariable("id") int id, @RequestBody HashMap<String, String> jsonHashtags){
@@ -51,28 +58,13 @@ public class HashtagRestController {
                 newHashtag.setName(jsonHashtags.get(key));
                 //newHashtag.getPosts().add(post);
                 postHashtags.add(newHashtag);
+                post.getHashtags().add(newHashtag);
                 hashtagRepository.save(newHashtag);
             }
         );
 
         if(post.getHashtags().isEmpty())post.setHashtags(postHashtags);
-        /*Hashtag newHashtag = new Hashtag();
-        System.out.println(hashtag);
-
-        newHashtag.setId(newHashtag.getId());
-        newHashtag.setName(hashtag.getName());
-        newHashtag.setPostNo(id);
-        newHashtag.setPost(post);
-
-        System.out.println(newHashtag);
-        hashtagRepository.save(newHashtag);
-        post.addHashtag(newHashtag);*/
-    }
-
-    //Get hashtags by post id
-    @GetMapping("/{id}")
-    List<Hashtag> getUserHastags(@PathVariable("id") int id){
-        return null;
+        System.out.println(post.getHashtags());
     }
 
 }

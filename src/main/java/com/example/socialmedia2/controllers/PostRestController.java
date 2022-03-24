@@ -32,6 +32,13 @@ public class PostRestController {
     List<Post> getAllPosts(){
         return postRepository.findAll();
     }
+    
+    //Get all posts by author id :
+    // Post debugging : finally works!!!
+    @GetMapping("/user/{author_id}")
+    List<Post> getPostsByAuthor(@PathVariable("author_id") int id){
+        return postRepository.getPostsByAuthorId(id);
+    }
 
     //Add a post by author id : seems to work
     //Post debugging : It works!
@@ -58,10 +65,4 @@ public class PostRestController {
         postRepository.save(newPost);
     }
 
-    //Get all posts by author id :
-    // Post debugging : finally works!!!
-    @GetMapping("/user/{author_id}")
-    List<Post> getPostsByAuthor(@PathVariable("author_id") int id){
-        return postRepository.getPostsByAuthorId(id);
-    }
 }
